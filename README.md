@@ -1,14 +1,14 @@
-# 📊 Présentation Interactive : Le Suivi de la Relève pour Licorne 🚀
+# 📊 Présentation Interactive : Le Suivi de la Relève 🚀
 
 ## Description du Projet
 
-Ce dépôt contient une présentation interactive et visuelle qui explique simplement le processus de suivi des relevés pour les utilisateurs de Licorne. Elle est conçue pour être consultable facilement sur ordinateur et smartphone.
+Ce dépôt contient une présentation interactive et visuelle qui explique simplement le processus de suivi des relevés pour les utilisateurs. Elle est conçue pour être consultable facilement sur ordinateur et smartphone.
 
 ## Accéder à la Présentation
 
 Cliquez ci-dessous pour découvrir la présentation en ligne :
 
-✨ [**Voir la Présentation en Ligne**](https://cosmofilou.github.io/infographie_licorne_releve/) ✨
+✨ [**Voir la Présentation en Ligne**](https://cosmofilou.github.io/infographie_lic_releve/) ✨
 
 *(Si la page ne s'affiche pas correctement, essayez de vider le cache de votre navigateur ou d'utiliser la navigation privée.)*
 
