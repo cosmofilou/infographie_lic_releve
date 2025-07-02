@@ -26,6 +26,7 @@
             --warning-bg: #fee2e2; /* Light red for warning */
             --warning-border: #ef4444; /* Red border */
             --warning-text: #b91c1c; /* Darker red text */
+            --accent-color: #3b82f6; /* Accent color for specific text */
         }
 
         /* Thème sombre */
@@ -43,6 +44,7 @@
                 --warning-bg: #4a2d2d; /* Darker red for warning */
                 --warning-border: #dc2626; /* Red border */
                 --warning-text: #fca5a5; /* Lighter red text */
+                --accent-color: #818cf8; /* Lighter indigo for accent text */
             }
         }
 
@@ -53,7 +55,7 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            padding: 1rem;
+            padding: 1rem; /* Reduced base padding for very small screens */
             box-sizing: border-box;
             color: var(--text-color-primary); /* Apply primary text color */
         }
@@ -63,7 +65,7 @@
             background-color: var(--container-bg);
             border-radius: 1.5rem;
             box-shadow: var(--card-shadow);
-            padding: 1.5rem;
+            padding: 1.5rem; /* Base padding for mobile */
             box-sizing: border-box;
             min-height: 600px;
             display: flex;
@@ -136,7 +138,7 @@
         .slide-content ul {
             text-align: left;
             width: 100%;
-            padding-left: 1.5rem;
+            padding-left: 1.5rem; /* Reduced base indent for mobile */
         }
         /* Responsive padding for lists */
         @media (min-width: 640px) { /* sm breakpoint */
@@ -223,7 +225,7 @@
                         ),
                         React.createElement(
                             "p",
-                            { className: "text-lg sm:text-xl font-semibold text-blue-600" }, // Responsive font size
+                            { className: "text-lg sm:text-xl font-semibold", style: { color: 'var(--accent-color)' } }, // Responsive font size, uses accent color
                             "Prêt à découvrir ?"
                         )
                     )
