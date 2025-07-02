@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- React & ReactDOM CDN -->
+    <!-- React & ReactDOM CDN (versions de production pour de meilleures performances) -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <style>
@@ -276,7 +276,8 @@
                                     { className: "list-item-visual" },
                                     React.createElement("span", { className: "icon" }, "📉💧"),
                                     React.createElement("div", null, React.createElement("strong", null, "Consommations normales :"), " Consommations annuelles (eau froide/chaude) sous les seuils définis.")
-                                ),
+                                )
+                                ,
                                 React.createElement(
                                     "li",
                                     { className: "list-item-visual" },
