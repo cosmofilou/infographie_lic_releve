@@ -1,247 +1,337 @@
-import React, { useState } from 'react';
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation Licorne: Le Suivi de la Relève</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- React & ReactDOM CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel CDN for JSX transformation in browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top to prevent excessive vertical centering */
+            min-height: 100vh; /* Ensure full viewport height */
+            padding: 2rem 1rem; /* Add some padding around the content */
+            box-sizing: border-box;
+        }
+        .presentation-container {
+            max-width: 960px; /* Max width for desktop */
+            width: 100%;
+            background-color: #ffffff; /* White background for the presentation */
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Deeper shadow */
+            padding: 2.5rem; /* Generous padding */
+            box-sizing: border-box;
+            min-height: 600px; /* Ensure enough height for content */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Distribute space */
+        }
+        .slide-content {
+            flex-grow: 1; /* Allow content to take available space */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically within the slide area */
+            align-items: center;
+            text-align: center;
+            padding: 1rem 0; /* Padding for content area */
+        }
+        .slide-content ul {
+            text-align: left; /* Align list items to the left */
+            width: 100%; /* Ensure list takes full width */
+            padding-left: 2rem; /* Indent list items */
+        }
+        .slide-content li {
+            margin-bottom: 1rem; /* Space between list items */
+        }
+        .slide-content h3 {
+            margin-bottom: 0.5rem; /* Space below sub-headings */
+        }
+        .warning-box {
+            background-color: #fee2e2; /* Light red for warning */
+            border-left: 5px solid #ef4444; /* Red border */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem; /* Adjusted margin */
+            color: #b91c1c; /* Darker red text */
+            text-align: left; /* Ensure text alignment within warning box */
+        }
+        .warning-box ul {
+            padding-left: 1rem; /* Adjust list padding in warning box */
+        }
+        .list-item-visual {
+            display: flex;
+            align-items: flex-start; /* Align icon and text at the top */
+            margin-bottom: 0.75rem; /* Increased space between list items for better readability */
+        }
+        .list-item-visual .icon {
+            font-size: 1.8em; /* Larger emoji for visual impact */
+            margin-right: 0.75rem;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            line-height: 1.2; /* Adjust line-height for better vertical alignment with text */
+            padding-top: 0.125rem; /* Small adjustment to align icon with text baseline */
+        }
+    </style>
+</head>
+<body>
+    <div id="root" class="w-full h-full flex justify-center items-center"></div>
 
-// Main App component
-const App = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    <script type="text/babel">
+        const { useState } = React;
+        const App = () => {
+            const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Define the slides content
-    const slides = [
-        {
-            title: "📊 Le Suivi de la Relève : Votre Guide Simplifié pour Licorne ! 🚀",
-            subtitle: "Comprenez en un coup d'œil comment les relevés de compteurs sont traités, de la planification à la mise à disposition de vos documents !",
-            content: (
-                <div className="text-center">
-                    <p className="text-lg text-gray-700 mb-4">
-                        Cette présentation vous guidera à travers les étapes clés du processus de suivi de la relève.
-                    </p>
-                    <p className="text-xl font-semibold text-blue-600">Prêt à découvrir ?</p>
-                </div>
-            )
-        },
-        {
-            title: "1. La Planification des Relevés 🗓️",
-            content: (
-                <ul className="list-none text-gray-700 space-y-4">
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">👥</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Organisation des équipes :</h3>
-                            <p>Les relevés sont planifiés par semaine et par équipe pour optimiser les tournées et garantir une couverture efficace.</p>
+            const slides = [
+                {
+                    title: "📊 Le Suivi de la Relève : Votre Guide Simplifié pour Licorne ! 🚀",
+                    subtitle: "Comprenez en un coup d'œil comment les relevés de compteurs sont traités, de la planification à la mise à disposition de vos documents !",
+                    content: (
+                        <div className="text-center">
+                            <p className="text-lg text-gray-700 mb-4">
+                                Cette présentation vous guidera à travers les étapes clés du processus de suivi de la relève.
+                            </p>
+                            <p className="text-xl font-semibold text-blue-600">Prêt à découvrir ?</p>
                         </div>
-                    </li>
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">📱</span>
+                    )
+                },
+                {
+                    title: "1. La Planification des Relevés 🗓️",
+                    content: (
+                        <ul className="list-none text-gray-700 space-y-4">
+                            <li className="list-item-visual">
+                                <span className="icon">👥</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Organisation des équipes :</h3>
+                                    <p>Les relevés sont planifiés par semaine et par équipe pour optimiser les tournées et garantir une couverture efficace.</p>
+                                </div>
+                            </li>
+                            <li className="list-item-visual">
+                                <span className="icon">📱</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Création des supports numériques :</h3>
+                                    <p>Des supports (applications sur smartphones ou tablettes) sont préparés pour les releveurs, contenant toutes les informations nécessaires pour leur mission.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    )
+                },
+                {
+                    title: "2. La Collecte des Données 📲",
+                    content: (
+                        <ul className="list-none text-gray-700 space-y-4">
+                            <li className="list-item-visual">
+                                <span className="icon">🚶‍♂️</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Sur le terrain (Mobilité) :</h3>
+                                    <p>Nos releveurs équipés de leurs appareils mobiles saisissent directement les index des compteurs lors de leurs visites.</p>
+                                </div>
+                            </li>
+                            <li className="list-item-visual">
+                                <span className="icon">📡</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">À distance (Télérelevé GPRS) :</h3>
+                                    <p>Pour les compteurs équipés de modules de télérelevé, les index sont collectés automatiquement via des capteurs et des réseaux dédiés, sans intervention humaine directe.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    )
+                },
+                {
+                    title: "3. L'Intégration des Index 🔄",
+                    content: (
+                        <ul className="list-none text-gray-700 space-y-4">
+                            <li className="list-item-visual">
+                                <span className="icon">⬇️</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Déchargement des données :</h3>
+                                    <p>Une fois les relevés effectués (sur le terrain) ou collectés (à distance), les données sont transférées de manière sécurisée dans le système Licorne.</p>
+                                </div>
+                            </li>
+                            <li className="list-item-visual">
+                                <span className="icon">⚙️</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Intégration automatique :</h3>
+                                    <ul className="list-none ml-8 mt-2 space-y-2">
+                                        <li className="list-item-visual">
+                                            <span className="icon">📅</span>
+                                            <div>
+                                                <h4 className="text-lg font-medium text-gray-700">Hebdomadaire :</h4>
+                                                <p>Chaque vendredi, les données des télérelevés sont automatiquement intégrées, assurant une mise à jour régulière.</p>
+                                            </div>
+                                        </li>
+                                        <li className="list-item-visual">
+                                            <span className="icon">📍</span>
+                                            <div>
+                                                <h4 className="text-lg font-medium text-gray-700">À date imposée :</h4>
+                                                <p>Dans certains cas spécifiques, une date précise est définie pour l'intégration des données, offrant une flexibilité accrue.</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    )
+                },
+                {
+                    title: "4. La Validation Automatique : La Magie Opère ! ✅",
+                    content: (
                         <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Création des supports numériques :</h3>
-                            <p>Des supports (applications sur smartphones ou tablettes) sont préparés pour les releveurs, contenant toutes les informations nécessaires pour leur mission.</p>
+                            <p className="text-gray-700 mb-4">
+                                Pour garantir la fiabilité et la justesse de vos données, Licorne vérifie automatiquement chaque relevé selon des règles strictes avant de le valider.
+                                <strong className="text-green-700">Pourquoi c'est génial ?</strong> Cela minimise les erreurs humaines, accélère le traitement et assure la qualité des informations !
+                            </p>
+                            <h3 className="text-xl font-medium text-gray-800 mb-3">Critères clés vérifiés (automatiquement !) :</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                                <ul className="list-none space-y-2">
+                                    <li className="list-item-visual">
+                                        <span className="icon">📄✔️</span>
+                                        <div><strong>Contrat valide :</strong> L'affaire est toujours active et non résiliée.</div>
+                                    </li>
+                                    <li className="list-item-visual">
+                                        <span className="icon">🔢⬆️</span>
+                                        <div><strong>Index cohérents :</strong> L'index actuel est logiquement supérieur au précédent, mais inférieur à 999 000.</div>
+                                    </li>
+                                    <li className="list-item-visual">
+                                        <span className="icon">🚫🐛</span>
+                                        <div><strong>Pas d'anomalies :</strong> Absence de codes d'anomalie spécifiques ("IC", "IJ").</div>
+                                    </li>
+                                </ul>
+                                <ul className="list-none space-y-2">
+                                    <li className="list-item-visual">
+                                        <span className="icon">❌💧</span>
+                                        <div><strong>Pas de compteur "déposé" :</strong> Aucun compteur général déclaré hors service.</div>
+                                    </li>
+                                    <li className="list-item-visual">
+                                        <span className="icon">📉💧</span>
+                                        <div><strong>Consommations normales :</strong> Consommations annuelles (eau froide/chaude) sous les seuils définis.</div>
+                                    </li>
+                                    <li className="list-item-visual">
+                                        <span className="icon">🔓</span>
+                                        <div><strong>Validation débloquée :</strong> Le compte gestionnaire n'a pas de blocage automatique activé.</div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </li>
-                </ul>
-            )
-        },
-        {
-            title: "2. La Collecte des Données 📲",
-            content: (
-                <ul className="list-none text-gray-700 space-y-4">
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">🚶‍♂️</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Sur le terrain (Mobilité) :</h3>
-                            <p>Nos releveurs équipés de leurs appareils mobiles saisissent directement les index des compteurs lors de leurs visites.</p>
-                        </div>
-                    </li>
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">📡</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">À distance (Télérelevé GPRS) :</h3>
-                            <p>Pour les compteurs équipés de modules de télérelevé, les index sont collectés automatiquement via des capteurs et des réseaux dédiés, sans intervention humaine directe.</p>
-                        </div>
-                    </li>
-                </ul>
-            )
-        },
-        {
-            title: "3. L'Intégration des Index 🔄",
-            content: (
-                <ul className="list-none text-gray-700 space-y-4">
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">⬇️</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Déchargement des données :</h3>
-                            <p>Une fois les relevés effectués (sur le terrain) ou collectés (à distance), les données sont transférées de manière sécurisée dans le système Licorne.</p>
-                        </div>
-                    </li>
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">⚙️</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Intégration automatique :</h3>
-                            <ul className="list-none ml-8 mt-2 space-y-2">
-                                <li className="flex items-start">
-                                    <span className="text-2xl mr-3 flex-shrink-0">📅</span>
+                    )
+                },
+                {
+                    title: "5. Le Dépôt des Documents (Éditiques) 📤",
+                    content: (
+                        <ul className="list-none text-gray-700 space-y-4">
+                            <li className="list-item-visual">
+                                <span className="icon">☁️</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Sur Accès Pro :</h3>
+                                    <p>Une fois les relevés validés, les documents officiels (appelés "éditiques", comme vos relevés de consommation ou factures) sont automatiquement déposés sur votre espace client sécurisé Accès Pro. Vous y accédez 24h/24, 7j/7.</p>
+                                </div>
+                            </li>
+                            <li className="list-item-visual">
+                                <span className="icon">📊</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Fichiers EDI (Échange de Données Informatisées) :</h3>
+                                    <p>Si votre compte gestionnaire est configuré, un fichier EDI est généré et déposé sur Accès Pro pour l'échange de données structurées avec nos partenaires.</p>
+                                </div>
+                            </li>
+                            <li className="list-item-visual">
+                                <span className="icon">📧❌</span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-800">Adieu les e-mails !</h3>
+                                    <p>Pour une meilleure sécurité et traçabilité, l'envoi des éditiques par e-mail est remplacé par le dépôt direct sur Accès Pro.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    )
+                },
+                {
+                    title: "⚠️ Que se passe-t-il si la validation échoue ou en cas de traitement manuel ?",
+                    content: (
+                        <div className="warning-box">
+                            <ul className="list-none space-y-4">
+                                <li className="list-item-visual">
+                                    <span className="icon">🛑</span>
                                     <div>
-                                        <h4 className="text-lg font-medium text-gray-700">Hebdomadaire :</h4>
-                                        <p>Chaque vendredi, les données des télérelevés sont automatiquement intégrées, assurant une mise à jour régulière.</p>
+                                        <h3 className="text-xl font-bold">Validation KO (Critères Non OK) :</h3>
+                                        <p>Si un ou plusieurs critères de validation automatique ne sont pas respectés, le relevé est marqué "Validation Auto KO". Il ne sera pas validé automatiquement et nécessitera une révision et une intervention manuelle par nos équipes pour corriger l'anomalie.</p>
                                     </div>
                                 </li>
-                                <li className="flex items-start">
-                                    <span className="text-2xl mr-3 flex-shrink-0">📍</span>
+                                <li className="list-item-visual">
+                                    <span className="icon">✍️</span>
                                     <div>
-                                        <h4 className="text-lg font-medium text-gray-700">À date imposée :</h4>
-                                        <p>Dans certains cas spécifiques, une date précise est définie pour l'intégration des données, offrant une flexibilité accrue.</p>
+                                        <h3 className="text-xl font-bold">Traitement manuel :</h3>
+                                        <p>Même si une demande de travail (DT) est traitée manuellement en dehors du processus de validation automatique, soyez assuré que l'éditique final sera quand même déposé sur Accès Pro.</p>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                </ul>
-            )
-        },
-        {
-            title: "4. La Validation Automatique : La Magie Opère ! ✅",
-            content: (
-                <div>
-                    <p className="text-gray-700 mb-4">
-                        Pour garantir la fiabilité et la justesse de vos données, Licorne vérifie automatiquement chaque relevé selon des règles strictes avant de le valider.
-                        <strong className="text-green-700">Pourquoi c'est génial ?</strong> Cela minimise les erreurs humaines, accélère le traitement et assure la qualité des informations !
-                    </p>
-                    <h3 className="text-xl font-medium text-gray-800 mb-3">Critères clés vérifiés (automatiquement !) :</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-                        <ul className="list-none space-y-2">
-                            <li className="flex items-start">
-                                <span className="text-2xl mr-3 flex-shrink-0">📄✔️</span>
-                                <div><strong>Contrat valide :</strong> L'affaire est toujours active et non résiliée.</div>
-                            </li>
-                            <li className="flex items-start">
-                                <span className="text-2xl mr-3 flex-shrink-0">🔢⬆️</span>
-                                <div><strong>Index cohérents :</strong> L'index actuel est logiquement supérieur au précédent, mais inférieur à 999 000.</div>
-                            </li>
-                            <li className="flex items-start">
-                                <span className="text-2xl mr-3 flex-shrink-0">🚫🐛</span>
-                                <div><strong>Pas d'anomalies :</strong> Absence de codes d'anomalie spécifiques ("IC", "IJ").</div>
-                            </li>
-                        </ul>
-                        <ul className="list-none space-y-2">
-                            <li className="flex items-start">
-                                <span className="text-2xl mr-3 flex-shrink-0">❌💧</span>
-                                <div><strong>Pas de compteur "déposé" :</strong> Aucun compteur général déclaré hors service.</div>
-                            </li>
-                            <li className="flex items-start">
-                                <span className="text-2xl mr-3 flex-shrink-0">📉💧</span>
-                                <div><strong>Consommations normales :</strong> Consommations annuelles (eau froide/chaude) sous les seuils définis.</div>
-                            </li>
-                            <li className="flex items-start">
-                                <span className="text-2xl mr-3 flex-shrink-0">🔓</span>
-                                <div><strong>Validation débloquée :</strong> Le compte gestionnaire n'a pas de blocage automatique activé.</div>
-                            </li>
-                        </ul>
+                    )
+                }
+            ];
+
+            const goToNextSlide = () => {
+                setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+            };
+
+            const goToPreviousSlide = () => {
+                setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+            };
+
+            const currentSlideContent = slides[currentSlide];
+
+            return (
+                <div className="presentation-container">
+                    <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
+                        {currentSlideContent.title}
+                    </h1>
+                    {currentSlideContent.subtitle && (
+                        <p className="text-lg text-center text-gray-600 mb-8">
+                            {currentSlideContent.subtitle}
+                        </p>
+                    )}
+
+                    <div className="slide-content">
+                        {currentSlideContent.content}
                     </div>
-                </div>
-            )
-        },
-        {
-            title: "5. Le Dépôt des Documents (Éditiques) 📤",
-            content: (
-                <ul className="list-none text-gray-700 space-y-4">
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">☁️</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Sur Accès Pro :</h3>
-                            <p>Une fois les relevés validés, les documents officiels (éditiques) sont automatiquement déposés sur votre espace client sécurisé Accès Pro. Vous y accédez 24h/24, 7j/7.</p>
-                        </div>
-                    </li>
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">📊</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Fichiers EDI (Échange de Données Informatisées) :</h3>
-                            <p>Si votre compte gestionnaire est configuré, un fichier EDI est généré et déposé sur Accès Pro pour l'échange de données structurées avec nos partenaires.</p>
-                        </div>
-                    </li>
-                    <li className="flex items-start">
-                        <span className="text-3xl mr-4 flex-shrink-0">📧❌</span>
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-800">Adieu les e-mails !</h3>
-                            <p>Pour une meilleure sécurité et traçabilité, l'envoi des éditiques par e-mail est remplacé par le dépôt direct sur Accès Pro.</p>
-                        </div>
-                    </li>
-                </ul>
-            )
-        },
-        {
-            title: "⚠️ Que se passe-t-il si la validation échoue ou en cas de traitement manuel ?",
-            content: (
-                <div className="warning-box">
-                    <ul className="list-none space-y-4">
-                        <li className="flex items-start">
-                            <span className="text-3xl mr-4 flex-shrink-0">🛑</span>
-                            <div>
-                                <h3 className="text-xl font-bold">Validation KO (Critères Non OK) :</h3>
-                                <p>Si un ou plusieurs critères de validation automatique ne sont pas respectés, le relevé est marqué "Validation Auto KO". Il ne sera pas validé automatiquement et nécessitera une révision et une intervention manuelle par nos équipes pour corriger l'anomalie.</p>
-                            </div>
-                        </li>
-                        <li className="flex items-start">
-                            <span className="text-3xl mr-4 flex-shrink-0">✍️</span>
-                            <div>
-                                <h3 className="text-xl font-bold">Traitement manuel :</h3>
-                                <p>Même si une demande de travail (DT) est traitée manuellement en dehors du processus de validation automatique, soyez assuré que l'éditique final sera quand même déposé sur Accès Pro.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            )
-        }
-    ];
 
-    const goToNextSlide = () => {
-        setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    };
+                    <div className="flex justify-between w-full mt-8">
+                        <button
+                            onClick={goToPreviousSlide}
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                        >
+                            Précédent
+                        </button>
+                        <span className="text-gray-600 text-lg flex items-center">
+                            Diapositive {currentSlide + 1} / {slides.length}
+                        </span>
+                        <button
+                            onClick={goToNextSlide}
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                        >
+                            Suivant
+                        </button>
+                    </div>
 
-    const goToPreviousSlide = () => {
-        setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-    };
-
-    const currentSlideContent = slides[currentSlide];
-
-    return (
-        <div className="min-h-screen bg-f0f4f8 flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl shadow-xl p-8 w-full max-w-4xl flex flex-col items-center relative min-h-[600px]">
-                <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
-                    {currentSlideContent.title}
-                </h1>
-                {currentSlideContent.subtitle && (
-                    <p className="text-lg text-center text-gray-600 mb-8">
-                        {currentSlideContent.subtitle}
+                    <p className="text-sm text-center text-gray-500 mt-8">
+                        <strong>Licorne : Capitaliser nos compétences</strong><br/>
+                        <em>Document à usage interne - Version 2025.04</em>
                     </p>
-                )}
-
-                <div className="flex-grow w-full px-4 py-6">
-                    {currentSlideContent.content}
                 </div>
+            );
+        };
 
-                <div className="flex justify-between w-full mt-8">
-                    <button
-                        onClick={goToPreviousSlide}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-                    >
-                        Précédent
-                    </button>
-                    <span className="text-gray-600 text-lg flex items-center">
-                        Diapositive {currentSlide + 1} / {slides.length}
-                    </span>
-                    <button
-                        onClick={goToNextSlide}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-                    >
-                        Suivant
-                    </button>
-                </div>
-
-                <p className="text-sm text-center text-gray-500 mt-8">
-                    <strong>Licorne : Capitaliser nos compétences</strong><br/>
-                    <em>Document à usage interne - Version 2025.04</em>
-                </p>
-            </div>
-        </div>
-    );
-};
-
-export default App;
+        // Render the App component
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
